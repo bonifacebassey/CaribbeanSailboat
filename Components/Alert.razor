@@ -1,0 +1,13 @@
+﻿@using CaribbeanSailboat.Components
+
+<div class="container">
+    <div class="header">
+        <span style="font-size:104px; color:@AlertColor">@(new MarkupString(AlertIcon))</span>
+    </div>
+    <div class="content">
+        @Message
+    </div>
+    <div class="action">
+        <StandardButton Text="CLOSE" Click="OnClose" />
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@import "themes.css";
+
+body {
+    /* Application */
+    --application-background-color: var(--dark);
+    /* Page Header */
+    --header-background-color: var(--dark);
+    --deader-text-color: var(--medium2);
+    /* Standard Button */
+    --standardbutton-text-color: var(--white);
+    --standardbutton-background-color: var(--royalblue);
+    --standardbutton-background-color-hover: var(--primary);
+}

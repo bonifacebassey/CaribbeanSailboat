@@ -1,0 +1,30 @@
+﻿@import "fonts.css";
+
+:root {
+    --primary: #FF9F19;
+    --process: #009FE3;
+    --white: #FFFFFF;
+    --black: #000000;
+    --light1: #FAFAFA;
+    --light2: #F5F5F5;
+    --light3: #EFEFEF;
+    --light4: #E6E6E6;
+    --medium1: #E0E0E0;
+    --medium2: #D3D3D3;
+    --medium3: #959CA2;
+    --royalblue: #3085d6;
+    --dark: #262D33;
+    --dark1: #15181A;
+    --dark2: #20262B;
+    --secondary1: #55CCFF;
+    --secondary2: #23D3D0;
+    --secondary3: #24DDA6;
+    --secondary4: #41B7B4;
+    --secondary5: #2F9A97;
+    --active: #00BC5E;
+    --notification: #1673A2;
+    --success: #2DD58E;
+    --warning: #F96249;
+    --alert: #EA3969;
+    --error: #EC5C5C;
+}

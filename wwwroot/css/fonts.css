@@ -1,0 +1,28 @@
+﻿:root {
+    /*for use with font-size <css> attribute*/
+    --font-size-3xs: 8px;
+    --font-size-2xs: 10px;
+    --font-size-1xs: 11px;
+    --font-size-xs: 12px;
+    --font-size-s: 14px;
+    --font-size-m: 16px;
+    --font-size-l: 18px;
+    --font-size-xl: 20px;
+    --font-size-1xl: 22px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 28px;
+    --font-size-4xl: 32px;
+    --font-size-5xl: 36px;
+    --font-size-6xl: 48px;
+    --font-size-7xl: 80px;
+    /*for use with font-weight <css> attribute*/
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-heavy: 900;
+}

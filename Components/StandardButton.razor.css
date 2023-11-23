@@ -1,0 +1,24 @@
+﻿button {
+    color: var(--standardbutton-text-color);
+    background: var(--standardbutton-background-color);
+    min-width: 120px;
+    height: 40px;
+    white-space: nowrap;
+    margin: 10px 0 10px 0;
+    letter-spacing: 2px;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    transition: .3s all ease-in-out;
+    border-radius: 50px;
+    border-style: none;
+}
+
+    button:hover:not([disabled]) {
+        background: var(--standardbutton-background-color-hover);
+        box-shadow: 0 0 6px #FF9F19;
+    }
+
+    button[disabled] {
+        cursor: default;
+        opacity: 0.5
+    }
