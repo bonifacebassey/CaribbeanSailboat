@@ -1,0 +1,9 @@
+﻿@import "themes.css";
+
+body {
+    /* Application */
+    --application-background-color: var(--dark);
+    /* Page Header */
+    --header-background-color: var(--dark);
+    --deader-text-color: var(--medium2);
+}
