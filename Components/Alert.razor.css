@@ -9,7 +9,7 @@
     padding: 20px;
     border: none;
     border-radius: 5px;
-    background: #fff;
+    background: var(--light1);
     font-family: inherit;
     font-size: 16px;
     top: 50%;
@@ -55,20 +55,3 @@
     height: 52px;
 }
 
-.confirm-btn {
-    height: 40px;
-    min-width: 120px;
-    margin: 10px 0 10px 0;
-    letter-spacing: 2px;
-    font-size: 16px;
-    font-weight: 600;
-    transition: .3s all ease-in-out;
-    background: #3F4850;
-    color: white;
-    border-radius: 50px;
-    border-style: outset;
-}
-    .confirm-btn:hover:not([disabled]) {
-        box-shadow: 0 0 6px #FF9F19;
-        background: #FF9F19;
-    }

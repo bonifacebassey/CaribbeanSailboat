@@ -20,7 +20,7 @@ public partial class Login
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
-            message = "Missing login details? Please provice both username and password to LOGIN!";
+            message = "Missing login details? Please provide both username and password to LOGIN!";
             alertType = AlertType.Question;
             overlay?.Show();
             return;
