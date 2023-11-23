@@ -1,0 +1,43 @@
+﻿.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(21,24,26,1);
+    z-index: 2;
+}
+
+    .overlay.show {
+        display: block;
+        animation: 1s animateIn;
+        animation-fill-mode: forwards;
+    }
+
+    .overlay.hide {
+        display: none;
+        animation-delay: 100ms;
+        animation: 300ms animateOut;
+    }
+
+@keyframes animateIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes animateOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
