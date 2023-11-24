@@ -11,7 +11,7 @@
         <input name="password" placeholder="password" @bind-value="@password" type="@(showPassword ? "text" : "password")">
 
         <span class="show-password">
-            <InputCheckbox @bind-Value="@showPassword" /> Show Password
+            <input type="checkbox" @bind="@showPassword" /> Show Password
         </span>
 
     <div class="login">

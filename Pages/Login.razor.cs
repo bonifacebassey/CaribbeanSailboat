@@ -6,7 +6,7 @@ namespace CaribbeanSailboat.Pages;
 public partial class Login
 {
     [Inject]
-    public required NavigationManager NavigationManager { get; set; }
+    public NavigationManager? NavigationManager { get; set; }
 
     private Overlay? overlay;
 
@@ -36,6 +36,6 @@ public partial class Login
 
     private void NavigateToMainPage()
     {
-        NavigationManager.NavigateTo("/mainpage");
+        NavigationManager?.NavigateTo("/mainpage");
     }
 }
