@@ -1,6 +1,21 @@
+.image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: inherit;
+}
 .background-image-container {
     background-image: url('images/sailboat.jpg');
     background-size: cover;
     background-position: center;
-    height: 72vh;
+    height: 60vh;
+    width: 60vw;
+}
+.welcome {
+    text-align: center;
+    padding-top: 36px;
+    font-size: 50px;
+    color: yellow;
 }
