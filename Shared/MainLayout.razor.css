@@ -1,0 +1,20 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+}
+
+header {
+    background-color: #001F3F;
+    color: #ffffff;
+}
+
+footer {
+    background-color: #00CED1;
+    color: #202A44;
+}

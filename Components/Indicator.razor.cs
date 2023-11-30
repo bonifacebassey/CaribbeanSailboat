@@ -12,10 +12,20 @@ public enum IndicatorColor
     Default
 }
 
+public enum Align
+{
+    Start,
+    Center,
+    End
+}
+
 public partial class Indicator
 {
     [Parameter]
     public IndicatorColor Color { get; set; }
+
+    [Parameter]
+    public Align AlignItem { get; set; } = Align.Center;
 
     [Parameter]
     public string? Label { get; set; }
@@ -33,6 +43,14 @@ public partial class Indicator
         IndicatorColor.Blue => "led-blue",
         IndicatorColor.Yellow => "led-yellow",
         IndicatorColor.Orange => "led-orange",
+        _ => "",
+    };
+
+    private string Alignment => AlignItem switch
+    {
+        Align.Start => "start",
+        Align.Center => "center",
+        Align.End => "end",
         _ => "",
     };
 }

@@ -1,6 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
-<main>
-    @Body
-</main>
 
+<!-- Page Container -->
+<div class="page-container">
+
+    <!-- Header -->
+    <header class="text-white pt-4 pb-2  px-3">
+        <NavMenu />
+    </header>
+
+    <!-- Content -->
+    <div class="main-content container-fluid mt-4">
+        @Body
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-white text-center py-3 mt-4">
+        Copyright &copy;
+        <script>document.write(new Date().getFullYear())</script> Caribbean Sailboat Charters
+    </footer>
+
+</div>

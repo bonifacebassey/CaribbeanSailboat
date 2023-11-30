@@ -1,0 +1,6 @@
+.background-image-container {
+    background-image: url('images/sailboat.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 72vh;
+}

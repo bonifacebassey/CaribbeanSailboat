@@ -1,0 +1,31 @@
+﻿@using CaribbeanSailboat.Components
+
+<div class="row">
+    <div class="col">
+        <p class="display-4 mb-0">C.S.Charters<sub>rentals</sub></p>
+    </div>
+    <div class="col row pe-5 justify-content-end align-items-center">
+        <Indicator Color="@IndicatorColor.Red" AlignItem="@Align.End" />
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <nav class="nav nav-tabs justify-content-end">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="welcome">
+                    <span class="bi bi-house-door" aria-hidden="true"></span> Welcome
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="rental">
+                    <span class="bi bi-person" aria-hidden="true"></span> Rental
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="report">
+                    <span class="bi bi-bar-chart" aria-hidden="true"></span> Report
+                </NavLink>
+            </div>
+        </nav>
+    </div>
+</div>
