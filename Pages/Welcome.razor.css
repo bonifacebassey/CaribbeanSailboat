@@ -6,15 +6,17 @@
     width: 100%;
     margin: inherit;
 }
+
 .background-image-container {
-    background-image: url('images/sailboat.jpg');
+    background-image: url('images/sailboat1.jpeg');
     background-size: cover;
     background-position: center;
     height: 60vh;
     width: 60vw;
 }
+
 .welcome {
-    text-align: center;
+    text-align: end;
     padding-top: 36px;
     font-size: 50px;
     color: yellow;
