@@ -188,7 +188,7 @@ public class EmployeeImpl : IEmployee, ICrudObject<IEmployee>
     {
         try
         {
-            string functionSql = "BEGIN :result := UserExists(:username, :password); END;";
+            string functionSql = "BEGIN :result := CHECK_USER_EXIST(:username, :password); END;";
 
             using (var connection = OracleDbContext.Get().Connection())
             {
@@ -205,7 +205,7 @@ public class EmployeeImpl : IEmployee, ICrudObject<IEmployee>
                     command.ExecuteNonQuery();
 
                     // Retrieve the result from the output parameter
-                    return Convert.ToBoolean(command.Parameters[":result"].Value);
+                    return ((Oracle.ManagedDataAccess.Types.OracleBoolean)command.Parameters[":result"].Value).Value;
                 }
             }
         }
