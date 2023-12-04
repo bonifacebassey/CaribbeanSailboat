@@ -1,3 +1,5 @@
+using Oracle.ManagedDataAccess.Client;
+using CaribbeanSailboat.Database;
 using CaribbeanSailboat.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+// Oracle Service
+builder.Services.AddSingleton(new OracleConnection(OracleDbContext.Get().ConnectionString));
 
 var app = builder.Build();
 
