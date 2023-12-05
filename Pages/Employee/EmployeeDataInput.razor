@@ -1,0 +1,102 @@
+@using CaribbeanSailboat.Components
+
+<div class="row">
+
+    <!-- User select section -->
+    <div class="col-md-auto px-0">
+        <div class="d-inline-block">
+            <div class="card">
+                <div class="card-header text-success">
+                    <h5 class="card-title">User Options</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="option1"
+                                value="option1">
+                            <label class="form-check-label" for="option1">
+                                Create New
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="option2"
+                                value="option2">
+                            <label class="form-check-label" for="option2">
+                                Modify Existing
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="option3"
+                                value="option3">
+                            <label class="form-check-label" for="option3">
+                                Delete User
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="option3"
+                                value="option3">
+                            <label class="form-check-label" for="option3">
+                                Show Users
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- User select section ENDS-->
+
+    <!-- Execute button section -->
+    <div class="col-md-auto  mt-auto d-flex align-items-center justify-content-center">
+        <StandardButton Text="EXECUTE" Click="OnExecute" />
+    </div>
+    <!-- Execute button section ENDS-->
+
+    <!-- Input section -->
+    <div class="col">
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field1">Employee ID</label>
+                        <input type="text" class="form-control" id="field1" placeholder="Enter value for Field 1">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field2">First Name</label>
+                        <input type="text" class="form-control" id="field2" placeholder="Enter value for Field 2">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field3">Last Name</label>
+                        <input type="text" class="form-control" id="field3" placeholder="Enter value for Field 3">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field4">Email</label>
+                        <input type="text" class="form-control" id="field4" placeholder="Enter value for Field 4">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field5">Username</label>
+                        <input type="text" class="form-control" id="field5" placeholder="Enter value for Field 5">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="field6">Password</label>
+                        <input type="text" class="form-control" id="field6" placeholder="Enter value for Field 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Input section ENDS-->
+</div>
