@@ -22,4 +22,24 @@ public class DbModel
     {
         return new EmployeeImpl(new Employee());
     }
+
+    public IBoat BoatModel()
+    {
+        return new BoatImpl(new Boat());
+    }
+
+    public ICharter CharterModel()
+    {
+        return new CharterImpl(new Charter());
+    }
+
+    public ICustomer CustomerModel()
+    {
+        return new CustomerImpl(new Customer());
+    }
+
+    public IOwner OwnerModel()
+    {
+        return new OwnerImpl(new Owner());
+    }
 }

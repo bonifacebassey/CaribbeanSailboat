@@ -1,0 +1,17 @@
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.flex-row-20 {
+    flex: 0 0 auto;
+    overflow: hidden;
+}
+
+.flex-row-80 {
+    flex: 1;
+    overflow: auto;
+    border: 1px solid grey;
+}
