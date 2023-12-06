@@ -1,5 +1,26 @@
 @page "/report"
+@using CaribbeanSailboat.Components
 
 <PageTitle>C.S.Charters - Report</PageTitle>
 
-<h1>Report Page</h1>
+<div class="content-container">
+    <div class="container-fluid flex-container">
+        <div class="row flex-row-20 d-flex align-items-center justify-content-center">
+            <!-- Content for the first row (20%) -->
+            <div class="col d-flex align-items-center justify-content-center">
+                <StandardButton Text="Button" />
+                <StandardButton Text="Button" />
+                <StandardButton Text="Button" />
+            </div>
+        </div>
+        <div class="row flex-row-80 mt-5">
+            <!-- Content for the second row (80%) -->
+            <div class="col">
+                @for (int i = 0; i < 15; ++i)
+                {
+                    <p>Add your reports here...</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

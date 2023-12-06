@@ -1,0 +1,14 @@
+<div class="switch">
+    <div class="mid">
+        <label class="rocker rocker-small">
+            <input type="checkbox" @onchange="@OnValueChanged">
+            <span class="switch-left">@OffText</span>
+            <span class="switch-right">@OnText</span>
+        </label>
+    </div>
+
+    @if (Text != "")
+    {
+        <div>@Text</div>
+    }
+</div>
