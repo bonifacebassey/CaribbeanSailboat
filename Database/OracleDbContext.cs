@@ -16,8 +16,8 @@ public class OracleDbContext
 
     private OracleDbContext()
     {
-        string configFile = "ORAConfig.json";
-        var config = ORAConfigReader.ReadConfig(configFile);
+        string configFile = "dbConfig.json";
+        var config = DBConfigReader.ReadConfig(configFile);
 
         // Build connection string
         connectionString = $"Data Source={config.Host}:1521/{config.ServiceName};User Id={config.UserId};Password={config.Password};";

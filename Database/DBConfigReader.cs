@@ -11,7 +11,7 @@ public class Config
     public string? Password { get; set; }
 }
 
-public class ORAConfigReader
+public class DBConfigReader
 {
     public static Config ReadConfig(string filename)
     {
