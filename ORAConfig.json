@@ -1,7 +1,7 @@
 {
-    "Host": "ec2-3-89-155-146.compute-1.amazonaws.com",
+    "Host": "",
     "Port": "1521",
     "ServiceName": "IS443",
-    "UserId": "DBA443",
-    "Password": "IS443fa23"
+    "UserId": "",
+    "Password": ""
 }
