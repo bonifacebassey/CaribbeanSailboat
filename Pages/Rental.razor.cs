@@ -184,7 +184,7 @@ public partial class Rental
 
     private void AddCharter(ICharter model)
     {
-        var charterId = model.AddCharter(customer.CustomerId, boat.OwnerId, charterStartDate, charterEndDate);
+        var charterId = model.AddCharter(customer.CustomerId, boat.BoatId, charterStartDate, charterEndDate);
         if (charterId != -1)
         {
             message = $"Add charter successful. Charter ID: {charterId}";
