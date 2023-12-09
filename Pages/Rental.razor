@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col d-flex align-items-center justify-content-center">
-            <StandardButton Text="Add|Return Charter" Click="ToggleCharter" Radius="5px" />
+            <StandardButton Text="ADD or RETURN" Click="ToggleCharter" Radius="5px" />
         </div>
     </div>
 </div>
@@ -28,21 +28,21 @@
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field3">E-Mail:</label>
-                <input type="text" class="form-control" id="field3" @bind-value=customer.Email>
+                <label for="cust-email">E-Mail:</label>
+                <input type="text" class="form-control" id="cust-email" @bind-value=customer.Email>
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field1">Firstname:</label>
-                <input type="text" class="form-control" id="field1" disabled=@existingCustomer
+                <label for="cust-fname">Firstname:</label>
+                <input type="text" class="form-control" id="cust-fname" disabled=@existingCustomer
                     @bind-value=customer.FirstName>
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field2">Lastname:</label>
-                <input type="text" class="form-control" id="field2" disabled=@existingCustomer
+                <label for="cust-lname">Lastname:</label>
+                <input type="text" class="form-control" id="cust-lname" disabled=@existingCustomer
                     @bind-value=customer.LastName>
             </div>
         </div>
@@ -52,31 +52,31 @@
     <!--BOAT-->
     <div class="row flex-grow-1 d-flex align-items-center justify-content-center mt-3">
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-sm m-3" @onclick="FindBoat">Find Boat</button>
+            <button type="button" class="btn btn-primary btn-sm mt-4 ms-2" @onclick="FindBoat">Find Boat</button>
         </div>
 
         <div class="col-md">
             <div class="form-group">
-                <label for="field2">Boat name:</label>
-                <input type="text" class="form-control" id="name" @bind-value="boat.Name">
+                <label for="boat-name">Boat name:</label>
+                <input type="text" class="form-control" id="boat-name" @bind-value="boat.Name">
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field2">Boat size:</label>
-                <input type="text" class="form-control" id="size" disabled @bind-value="boat.Size">
+                <label for="boat-size">Boat size:</label>
+                <input type="text" class="form-control" id="boat-size" disabled @bind-value="boat.Size">
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field3">Rental cost:</label>
-                <input type="number" class="form-control" id="cost" disabled @bind-value="boat.RentalCost">
+                <label for="boat-cost">Rental cost:</label>
+                <input type="number" class="form-control" id="boat-cost" disabled @bind-value="boat.RentalCost">
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="field3">Boat Id:</label>
-                <input type="number" class="form-control" id="boatid" disabled @bind-value="boat.BoatId">
+                <label for="boat-id">Boat Id:</label>
+                <input type="number" class="form-control" id="boat-id" disabled @bind-value="boat.BoatId">
             </div>
         </div>
     </div>
@@ -86,26 +86,26 @@
     <div class="row d-flex align-items-center justify-content-center mt-3">
         <div class="col-md">
             <div class="form-group">
-                <label for="field1">Customer Id:</label>
-                <input type="number" class="form-control" id="field1" disabled @bind-value=customer.CustomerId>
+                <label for="charter-custid">Customer Id:</label>
+                <input type="number" class="form-control" id="charter-custid" disabled @bind-value=customer.CustomerId>
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="field2">Boat Id:</label>
-                <input type="number" class="form-control" id="field2" disabled @bind-value=boat.BoatId>
+                <label for="charter-boatid">Boat Id:</label>
+                <input type="number" class="form-control" id="charter-boatid" disabled @bind-value=boat.BoatId>
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="datepicker" class="form-label">Start Date:</label>
-                <input id="datepicker" type="date" class="form-control" @bind="charterStartDate" />
+                <label for="charter-startdate" class="form-label">Start Date:</label>
+                <input id="charter-startdate" type="date" class="form-control" @bind="charterStartDate" />
             </div>
         </div>
         <div class="col-md">
             <div class="form-group">
-                <label for="datepicker" class="form-label">End Date:</label>
-                <input id="datepicker" type="date" class="form-control" @bind="charterEndDate" />
+                <label for="charter-enddate" class="form-label">End Date:</label>
+                <input id="charter-enddate" type="date" class="form-control" @bind="charterEndDate" />
             </div>
         </div>
     </div>
@@ -119,8 +119,8 @@
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-md mt-2">
             <div class="form-group">
-                <label for="field1">Charter ID:</label>
-                <input type="number" class="form-control" id="field1" @bind-value="charterId">
+                <label for="charter-retid">Charter ID:</label>
+                <input type="number" class="form-control" id="charter-retid" @bind-value="charterId">
             </div>
         </div>
     </div>
