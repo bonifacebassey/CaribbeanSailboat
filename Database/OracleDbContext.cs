@@ -30,13 +30,19 @@ public class OracleDbContext
         return new OracleConnection(connectionString);
     }
 
-    public void Execute(string queryString, string connectionString)
+    public async Task<bool> IsDatabaseRunningAsync()
     {
-        using (var connection = new OracleConnection(connectionString))
+        try
         {
-            var command = new OracleCommand(queryString, connection);
-            command.Connection.Open();
-            command.ExecuteNonQuery();
+            using (OracleConnection connection = Connection())
+            {
+                await connection.OpenAsync();
+                return connection.State == System.Data.ConnectionState.Open;
+            }
+        }
+        catch
+        {
+            return false; // If an exception occurs, the database is not running
         }
     }
 }

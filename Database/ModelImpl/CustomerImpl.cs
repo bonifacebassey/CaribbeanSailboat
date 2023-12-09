@@ -1,10 +1,9 @@
 
-using Dapper;
 using Oracle.ManagedDataAccess.Client;
 using CaribbeanSailboat.Database.Contract;
 using CaribbeanSailboat.Database.Model;
-using System;
 using System.Data;
+using Oracle.ManagedDataAccess.Types;
 
 namespace CaribbeanSailboat.Database.ModelImpl;
 
@@ -42,54 +41,35 @@ public class CustomerImpl : ICustomer
         throw new NotImplementedException();
     }
 
-    public ICustomer AddCustomer(ICustomer customer)
+    public int AddCustomer(Customer customer)
     {
-        var newCustomer = new Customer();
+        int customerId = -1;
         try
         {
             using (var connection = OracleDbContext.Get().Connection())
-            using (var command = connection.CreateCommand())
             {
                 connection.Open();
 
-                // Define the PL/SQL block
-                command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "BEGIN :result := ADD_CUSTOMER(:firstname, :lastname, :email, :balance); END;";
-
-                // Add input parameters
-                command.Parameters.Add("firstname", OracleDbType.Varchar2).Value = customer.FirstName;
-                command.Parameters.Add("lastname", OracleDbType.Varchar2).Value = customer.LastName;
-                command.Parameters.Add("email", OracleDbType.Varchar2).Value = customer.Email;
-                command.Parameters.Add("balance", OracleDbType.Double).Value = customer.Balance;
-
-                // Add output parameter for the function result (CUSTOMER_ID)
-                var outputParameter = new OracleParameter("result", OracleDbType.Int32)
+                using (OracleCommand command = connection.CreateCommand())
                 {
-                    Direction = ParameterDirection.ReturnValue
-                };
-                command.Parameters.Add(outputParameter);
+                    command.CommandText = "Add_Customer";
+                    command.CommandType = CommandType.StoredProcedure;
 
-                // Execute the PL/SQL block
-                command.ExecuteNonQuery();
+                    command.Parameters.Add("IN_CUST_FNAME", OracleDbType.Varchar2).Value = customer.FirstName;
+                    command.Parameters.Add("IN_CUST_LNAME", OracleDbType.Varchar2).Value = customer.LastName;
+                    command.Parameters.Add("IN_CUST_EMAIL", OracleDbType.Varchar2).Value = customer.Email;
+                    command.Parameters.Add("OUT_RESULT", OracleDbType.Int32).Direction = ParameterDirection.Output;
 
-                // Retrieve the function result from the output parameter
-                int customerId = Convert.ToInt32(outputParameter.Value);
+                    command.ExecuteNonQuery();
 
-                // Create and return a new customer with the provided details and updated CustomerId
-                newCustomer = new Customer
-                {
-                    CustomerId = customerId,
-                    FirstName = customer.FirstName,
-                    LastName = customer.LastName,
-                    Email = customer.Email,
-                    Balance = customer.Balance
-                };
+                    OracleDecimal outputValue = (OracleDecimal)command.Parameters["OUT_RESULT"].Value;
+                    customerId = outputValue.IsNull ? 0 : outputValue.ToInt32();
+                }
             }
         }
         catch { }
-        return new CustomerImpl(newCustomer);
+        return customerId;
     }
-
 
     public ICustomer GetCustomerByEmail(string email)
     {

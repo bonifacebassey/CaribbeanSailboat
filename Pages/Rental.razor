@@ -4,147 +4,140 @@
 <PageTitle>C.S.Charters - Rental</PageTitle>
 
 
-
 <div class="container">
-
-    <!--CUSTOMER Container-->
-    <h1 class="display-6 mt-4">Customer</h1>
-    <div class="row d-flex border align-items-center justify-content-center">
-        <div class="col-md-2">
-            <Switch OnText="Old" OffText="New" ValueChanged="(val) => toggleCustomer = !val" />
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field1">FirstName:</label>
-                <input type="text" class="form-control" id="field1" disabled=@toggleCustomer>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field2">LastName:</label>
-                <input type="text" class="form-control" id="field2" disabled=@toggleCustomer>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field3">Email:</label>
-                <input type="text" class="form-control" id="field3">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col d-flex align-items-center justify-content-center">
-                <StandardButton Text="Find/Add Cunstomer" Click="@FindOrAddCustomer" />
-            </div>
+    <div class="row">
+        <div class="col d-flex align-items-center justify-content-center">
+            <StandardButton Text="Add|Return Charter" Click="ToggleCharter" Radius="5px" />
         </div>
     </div>
-
-    <!--BOAT Container-->
-    <h1 class="display-6 mt-4">Boat</h1>
-    <div class="row flex-grow-1 d-flex align-items-center justify-content-center">
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field2">Name:</label>
-                <input type="text" class="form-control" id="name" @bind-value="selectedBoatName">
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field2">Size:</label>
-                <input type="text" class="form-control" id="size" disabled @bind-value="selectedBoat.Size">
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field3">Rental Cost:</label>
-                <input type="text" class="form-control" id="cost" disabled @bind-value="selectedBoat.RentalCost">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <label for="field3">ID:</label>
-                <input type="text" class="form-control" id="boatid" disabled @bind-value="selectedBoat.BoatId">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col d-flex align-items-center justify-content-center">
-                <StandardButton Text="Find Boat" Click="@FindBoat" />
-            </div>
-        </div>
-    </div>
-    <hr />
-
-    <!--CHARTER Container-->
-    <h1 class="display-6 mt-4">Charter</h1>
-    <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field1">Customer ID:</label>
-                <input type="text" class="form-control" id="field1" disabled>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field2">Boat ID:</label>
-                <input type="text" class="form-control" id="field2" disabled @bind-value=selectedBoat.BoatId>
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field3">Start Date:</label>
-                <input type="text" class="form-control" id="field3">
-            </div>
-        </div>
-        <div class="col-md">
-            <div class="form-group">
-                <label for="field3">End Date:</label>
-                <input type="text" class="form-control" id="field3">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col d-flex align-items-center justify-content-center">
-                <StandardButton Text="Submit Charter" Click="@SubmitCharter" />
-            </div>
-        </div>
-    </div>
-    <hr />
 </div>
 
 
+<!--Container ADD Charter-->
+<div class="container border mt-3 pb-3 @(isReturnCharter ? "disabled-div" : "glow-border")">
+
+    <h2 class="m-2">Add Charter</h2>
+
+    <!--CUSTOMER-->
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-1 col d-flex align-items-center">
+            <button type="button" class="btn btn-primary btn-sm m-2" @onclick="FindOrAddCustomer">Customer</button>
+        </div>
+        <div class="col-md-auto">
+            <Switch OnText="Old" OffText="New" ValueChanged="(val) => existingCustomer = !val" />
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field3">E-Mail:</label>
+                <input type="text" class="form-control" id="field3" @bind-value=customer.Email>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field1">Firstname:</label>
+                <input type="text" class="form-control" id="field1" disabled=@existingCustomer
+                    @bind-value=customer.FirstName>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field2">Lastname:</label>
+                <input type="text" class="form-control" id="field2" disabled=@existingCustomer
+                    @bind-value=customer.LastName>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <!--BOAT-->
+    <div class="row flex-grow-1 d-flex align-items-center justify-content-center mt-3">
+        <div class="col-md-2">
+            <button type="button" class="btn btn-primary btn-sm m-3" @onclick="FindBoat">Find Boat</button>
+        </div>
+
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field2">Boat name:</label>
+                <input type="text" class="form-control" id="name" @bind-value="boat.Name">
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field2">Boat size:</label>
+                <input type="text" class="form-control" id="size" disabled @bind-value="boat.Size">
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field3">Rental cost:</label>
+                <input type="number" class="form-control" id="cost" disabled @bind-value="boat.RentalCost">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="field3">Boat Id:</label>
+                <input type="number" class="form-control" id="boatid" disabled @bind-value="boat.BoatId">
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <!--CHARTER-->
+    <div class="row d-flex align-items-center justify-content-center mt-3">
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field1">Customer Id:</label>
+                <input type="number" class="form-control" id="field1" disabled @bind-value=customer.CustomerId>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="field2">Boat Id:</label>
+                <input type="number" class="form-control" id="field2" disabled @bind-value=boat.BoatId>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="datepicker" class="form-label">Start Date:</label>
+                <input id="datepicker" type="date" class="form-control" @bind="charterStartDate" />
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group">
+                <label for="datepicker" class="form-label">End Date:</label>
+                <input id="datepicker" type="date" class="form-control" @bind="charterEndDate" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Container RETURN Charter-->
+<div class="container border mt-5  pb-3 @(isReturnCharter ? "glow-border" : "disabled-div")">
+
+    <h2 class="m-2">Return Charter</h2>
+
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md mt-2">
+            <div class="form-group">
+                <label for="field1">Charter ID:</label>
+                <input type="number" class="form-control" id="field1" @bind-value="charterId">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--SUBMIT-->
+<div class="container border mt-5">
+    <div class="row">
+        <div class="col d-flex align-items-center justify-content-center">
+            <StandardButton Text="SUBMIT" Click="SubmitRequest" Radius="5px"
+                IsEnabled="@( (isReturnCharter && charterId > 0) || (!isReturnCharter &&(customer.CustomerId > 0 && boat.BoatId > 0)))" />
+        </div>
+    </div>
+</div>
+
+
+<!--For showing ALERT messages-->
 <Overlay @ref=overlay>
     <Alert Message="@message" AlertType="@alertType" Close="(() => overlay?.Hide())" />
 </Overlay>
-
-@* <div class="row">
-<div class="col">
-<!-- Content for the first container -->
-<div class="border p-3">
-<StandardButton Text="Add CUSTOMER" Click="@OnClick" />
-</div>
-</div>
-<div class="col">
-<!-- Content for the second container -->
-<div class="border p-3">
-@if (boatList is not null)
-{
-@foreach (var boat in boatList)
-{
-@boat.Name @boat.Size
-<div>@boat.Name @boat.Size @boat.RentalCost</div>
-}
-}
-
-</div>
-</div>
-<div class="col">
-<!-- Content for the third container -->
-<div class="border p-3">
-@if (customer != null)
-{
-<div>@customer.FirstName @customer.LastName, @customer.Email</div>
-}
-</div>
-</div>
-</div> *@

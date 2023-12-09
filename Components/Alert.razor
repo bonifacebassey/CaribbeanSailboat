@@ -2,7 +2,12 @@
 
 <div class="container">
     <div class="header">
-        <span style="font-size:104px; color:@AlertColor">@(new MarkupString(AlertIcon))</span>
+        @* <span style="font-size:104px; color:@AlertColor">@(new MarkupString(AlertIcon))</span> *@
+
+        <span style="font-size:70px; color:@AlertColor">
+            <img src="@AlertIcon" height="100%" alt="SVG Icon" />
+        </span>
+
     </div>
     <div class="content">
         @Message

@@ -6,7 +6,6 @@ public enum AlertType
 {
     Error,
     Warning,
-    Question,
     Success,
     Info
 }
@@ -25,8 +24,7 @@ public partial class Alert
     private string AlertColor => AlertType switch
     {
         AlertType.Error => "var(--error)",
-        AlertType.Warning => "var(--warning)",
-        AlertType.Question => "var(--alert)",
+        AlertType.Warning => "var(--alert)",
         AlertType.Success => "var(--success)",
         AlertType.Info => "var(--secondary1)",
         _ => ""
@@ -34,13 +32,21 @@ public partial class Alert
 
     private string AlertIcon => AlertType switch
     {
-        AlertType.Error => "&#11198;",
-        AlertType.Warning => "&#10007;",
-        AlertType.Question => "&#63;",
-        AlertType.Success => "&#10003;",
-        AlertType.Info => "&#8505;",
+        AlertType.Error => "svg/x-circle.svg",
+        AlertType.Warning => "svg/question-circle.svg",
+        AlertType.Success => "svg/check-circle.svg",
+        AlertType.Info => "svg/exclamation-circle.svg",
         _ => ""
     };
+
+    // private string AlertIcon => AlertType switch
+    // {
+    //     AlertType.Error => "&#11198;",
+    //     AlertType.Warning => "&#xF505;",
+    //     AlertType.Success => "&#xF26B;",
+    //     AlertType.Info => "&#xF333;",
+    //     _ => "wwwroot/images/icon.svg"
+    // };
 
     private void OnClose()
     {

@@ -22,19 +22,20 @@ public partial class UserLogin
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
             message = "Missing login details? Please provide both username and password to LOGIN!";
-            alertType = AlertType.Question;
+            alertType = AlertType.Warning;
             overlay?.Show();
             return;
         }
 
         if (CheckUserExists())
         {
-            await Task.Delay(2000);
+            await Task.Delay(1000);
 
             // Navigate to welcome page
             NavigationManager?.NavigateTo("/welcome");
         }
     }
+
 
     private bool CheckUserExists()
     {

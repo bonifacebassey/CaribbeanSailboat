@@ -8,6 +8,6 @@ public interface ICustomer : ICrudObject<ICustomer>
     string? Email { get; set; }
     double Balance { get; set; }
 
-    ICustomer AddCustomer(ICustomer customer);
+    int AddCustomer(Model.Customer customer);
     ICustomer GetCustomerByEmail(string email);
 }

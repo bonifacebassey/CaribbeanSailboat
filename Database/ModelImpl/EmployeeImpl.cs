@@ -74,28 +74,31 @@ public class EmployeeImpl : IEmployee, ICrudObject<IEmployee>
                                     "EMPLOYEE_PASSWORD = :Password," +
                                     "EMPLOYEE_JOIN_DATE = :JoinDate " +
                             "WHERE EMPLOYEE_ID = :Id";
-
-        using (var connection = OracleDbContext.Get().Connection())
+        try
         {
-            connection.Open();
-
-            using (OracleCommand command = new OracleCommand(updateSql, connection))
+            using (var connection = OracleDbContext.Get().Connection())
             {
-                // Add parameters using the properties of the User object
-                command.Parameters.Add(new OracleParameter(":Id", OracleDbType.Int32, employee.Id, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":FirstName", OracleDbType.Varchar2, employee.FirstName, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":LastName", OracleDbType.Varchar2, employee.LastName, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":Email", OracleDbType.Varchar2, employee.Email, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":Username", OracleDbType.Varchar2, employee.Username, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":Password", OracleDbType.Varchar2, employee.Password, ParameterDirection.Input));
-                command.Parameters.Add(new OracleParameter(":JoinDate", OracleDbType.Date, employee.JoinDate, ParameterDirection.Input));
+                connection.Open();
 
-                // Execute the UPDATE command
-                command.ExecuteNonQuery();
+                using (OracleCommand command = new OracleCommand(updateSql, connection))
+                {
+                    // Add parameters using the properties of the User object
+                    command.Parameters.Add(new OracleParameter(":Id", OracleDbType.Int32, employee.Id, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":FirstName", OracleDbType.Varchar2, employee.FirstName, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":LastName", OracleDbType.Varchar2, employee.LastName, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":Email", OracleDbType.Varchar2, employee.Email, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":Username", OracleDbType.Varchar2, employee.Username, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":Password", OracleDbType.Varchar2, employee.Password, ParameterDirection.Input));
+                    command.Parameters.Add(new OracleParameter(":JoinDate", OracleDbType.Date, employee.JoinDate, ParameterDirection.Input));
 
-                Console.WriteLine("User updated successfully!");
+                    // Execute the UPDATE command
+                    command.ExecuteNonQuery();
+
+                    Console.WriteLine("User updated successfully!");
+                }
             }
         }
+        catch { }
     }
 
     public void DeleteItem(IEmployee employee)

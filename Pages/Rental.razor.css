@@ -1,0 +1,29 @@
+label {
+    font-weight: 500;
+
+    font-style: italic;
+    color: #001F3F;
+    letter-spacing: 1px;
+}
+
+.disabled-div {
+    pointer-events: none;
+    opacity: 0.5;
+    background-color: var(--medium2)
+}
+
+.glow-border {
+    border: 2px solid #00f;
+    border-radius: 8px;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 0px #6F42C1, 0 0 10px #6F42C1, 0 0 20px #6F42C1;
+    }
+
+    to {
+        box-shadow: 0 0 10px #6F42C1, 0 0 20px #6F42C1, 0 0 30px #6F42C1;
+    }
+}

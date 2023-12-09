@@ -6,4 +6,7 @@ public interface ICharter : ICrudObject<ICharter>
     int CustomerId { get; set; }
     DateTime StartDate { get; set; }
     DateTime EndDate { get; set; }
+
+    int AddCharter(int CustomerId, int BoatId, DateTime startDate, DateTime endDate);
+    bool ReturnCharter(int charterId);
 }

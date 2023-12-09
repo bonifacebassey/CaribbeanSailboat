@@ -44,33 +44,36 @@ public class BoatImpl : IBoat
     {
         List<IBoat> boats = new List<IBoat>();
 
-        using (var connection = OracleDbContext.Get().Connection())
+        try
         {
-            connection.Open();
-
-            using (OracleCommand command = connection.CreateCommand())
+            using (var connection = OracleDbContext.Get().Connection())
             {
-                command.CommandText = "SELECT * FROM BOAT";
+                connection.Open();
 
-                using (OracleDataReader reader = command.ExecuteReader())
+                using (OracleCommand command = connection.CreateCommand())
                 {
-                    while (reader.Read())
-                    {
-                        var boat = new Boat
-                        {
-                            BoatId = reader.GetInt32(reader.GetOrdinal("BOAT_ID")),
-                            OwnerId = reader.GetInt32(reader.GetOrdinal("OWNER_ID")),
-                            Name = reader["BOAT_NAME"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_NAME")),
-                            Size = reader["BOAT_SIZE"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_SIZE")),
-                            RentalCost = reader["BOAT_RENTAL_COST"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_RENTAL_COST"))
-                        };
+                    command.CommandText = "SELECT * FROM BOAT";
 
-                        boats.Add(new BoatImpl(boat));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var boat = new Boat
+                            {
+                                BoatId = reader.GetInt32(reader.GetOrdinal("BOAT_ID")),
+                                OwnerId = reader.GetInt32(reader.GetOrdinal("OWNER_ID")),
+                                Name = reader["BOAT_NAME"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_NAME")),
+                                Size = reader["BOAT_SIZE"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_SIZE")),
+                                RentalCost = reader["BOAT_RENTAL_COST"] is DBNull ? null : reader.GetString(reader.GetOrdinal("BOAT_RENTAL_COST"))
+                            };
+
+                            boats.Add(new BoatImpl(boat));
+                        }
                     }
                 }
             }
         }
-
+        catch { }
         return boats;
     }
 }
