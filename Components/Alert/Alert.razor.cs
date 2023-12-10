@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace CaribbeanSailboat.Components;
+namespace CaribbeanSailboat.Components.Alert;
 
 public enum AlertType
 {
@@ -38,15 +38,6 @@ public partial class Alert
         AlertType.Info => "svg/exclamation-circle.svg",
         _ => ""
     };
-
-    // private string AlertIcon => AlertType switch
-    // {
-    //     AlertType.Error => "&#11198;",
-    //     AlertType.Warning => "&#xF505;",
-    //     AlertType.Success => "&#xF26B;",
-    //     AlertType.Info => "&#xF333;",
-    //     _ => "wwwroot/images/icon.svg"
-    // };
 
     private void OnClose()
     {

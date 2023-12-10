@@ -1,9 +1,10 @@
-using CaribbeanSailboat.Components;
+using CaribbeanSailboat.Components.Alert;
+using CaribbeanSailboat.Components.Overlay;
 using CaribbeanSailboat.Database;
 using CaribbeanSailboat.Database.Contract;
 using CaribbeanSailboat.Database.Model;
 
-namespace CaribbeanSailboat.Pages;
+namespace CaribbeanSailboat.Pages.Rental;
 
 public partial class Rental
 {

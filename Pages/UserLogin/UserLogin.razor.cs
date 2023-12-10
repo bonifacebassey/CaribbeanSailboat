@@ -1,8 +1,9 @@
-﻿using CaribbeanSailboat.Components;
+﻿using CaribbeanSailboat.Components.Alert;
+using CaribbeanSailboat.Components.Overlay;
 using CaribbeanSailboat.Database;
 using Microsoft.AspNetCore.Components;
 
-namespace CaribbeanSailboat.Pages;
+namespace CaribbeanSailboat.Pages.UserLogin;
 
 public partial class UserLogin
 {

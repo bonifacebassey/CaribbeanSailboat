@@ -1,6 +1,6 @@
-using CaribbeanSailboat.Components;
+using CaribbeanSailboat.Components.Overlay;
 
-namespace CaribbeanSailboat.Pages;
+namespace CaribbeanSailboat.Pages.Index;
 
 public partial class Index
 {

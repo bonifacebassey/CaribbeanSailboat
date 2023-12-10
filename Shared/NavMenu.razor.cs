@@ -1,4 +1,4 @@
-using CaribbeanSailboat.Components;
+using CaribbeanSailboat.Components.Indicator;
 using CaribbeanSailboat.Database;
 
 namespace CaribbeanSailboat.Shared;

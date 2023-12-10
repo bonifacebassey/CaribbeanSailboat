@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace CaribbeanSailboat.Components;
+namespace CaribbeanSailboat.Components.Overlay;
 
 public partial class Overlay
 {
