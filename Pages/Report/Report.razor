@@ -60,15 +60,16 @@
                     <!-- Conditionally render the financial report only if a valid search has been performed -->
                     @if (!string.IsNullOrEmpty(customerID) && searchPerformed && CustomerIDCharters.Any())
                     {
-                        <div class="financial-report-container">
+                        <div class="financial-report-container mt-5">
                             <h3>Financial Report</h3>
                             <div>
-                                <p><strong>Name:</strong> @CustomerIDCharters.First().CustomerFirstName @CustomerIDCharters.First().CustomerLastName</p>
+                                <p><strong>Name:</strong> @CustomerIDCharters.First().CustomerFirstName
+                                    @CustomerIDCharters.First().CustomerLastName</p>
                                 <p><strong>Email:</strong> @CustomerIDCharters.First().CustomerEmail</p>
                                 <p><strong>Total Balance:</strong> @CustomerIDCharters.Sum(c => c.BoatRentalCost).ToString("C")</p>
                             </div>
                         </div>
-                        }
+                    }
                 }
                 else
                 {
@@ -110,9 +111,15 @@
                                     <td>@(charter.CrewFirstName ?? "N/A") @(charter.CrewLastName ?? "N/A")</td>
                                     <td>@charter.ItineraryName</td>
                                     <td>@charter.WeatherDescription</td>
-                                    <td>@(DateTime.Parse(charter.CharterStartDate).ToString("d"))</td>
-                                    <td>@(DateTime.Parse(charter.CharterEndDate).ToString("d"))</td>
-                                    <td>@(DateTime.Parse(charter.CharterReturnDate).ToString("d"))</td>
+                                    <td>@(charter.CharterStartDate?.Length > 0
+                                            ? DateTime.Parse(charter.CharterStartDate).ToString("dd-MMM-yyyy")
+                                            : (DateTime?)null)</td>
+                                    <td>@(charter.CharterEndDate?.Length > 0
+                                            ? DateTime.Parse(charter.CharterEndDate).ToString("dd-MMM-yyyy")
+                                            : (DateTime?)null)</td>
+                                    <td>@(charter.CharterReturnDate?.Length > 0
+                                            ? DateTime.Parse(charter.CharterReturnDate).ToString("dd-MMM-yyyy")
+                                            : (DateTime?)null)</td>
                                 </tr>
                             }
                         </tbody>

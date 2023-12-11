@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using CaribbeanSailboat.Database;
 using Oracle.ManagedDataAccess.Client;
 
@@ -10,11 +7,11 @@ namespace CaribbeanSailboat.Pages.Report
     {
         public List<Charter> CustomerIDCharters { get; private set; } = new List<Charter>();
         public List<Charter> DateRangeCharters { get; private set; } = new List<Charter>();
-        private string customerID;
+        private string? customerID;
         private bool isCustomerIDView;
         private bool searchPerformed = false;
-        private DateTime? startDateFilter;
-        private DateTime? endDateFilter;
+        private DateTime? startDateFilter = new DateTime(2022, 3, 1);
+        private DateTime? endDateFilter = DateTime.Now;
 
         private async Task LoadFilteredCharters()
         {
@@ -38,12 +35,12 @@ namespace CaribbeanSailboat.Pages.Report
         }
 
 
-        private async Task LoadChartersAsync(List<Charter> targetList, string customerID = null, DateTime? startDate = null, DateTime? endDate = null)
+        private async Task LoadChartersAsync(List<Charter> targetList, string? customerID = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             var dbConfig = DBConfigReader.ReadConfig("dbConfig.json");
             var connectionString = $"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST={dbConfig.Host})(PORT={dbConfig.Port}))) (CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME={dbConfig.ServiceName})));User Id={dbConfig.UserId};Password={dbConfig.Password};";
 
-            using (var connection = new OracleConnection(connectionString))
+            using (var connection = OracleDbContext.Get().Connection())
             {
                 var command = new OracleCommand();
                 command.Connection = connection;
@@ -97,19 +94,28 @@ namespace CaribbeanSailboat.Pages.Report
                 {
                     while (reader.Read())
                     {
-                        
+
                         var charter = new Charter();
                         // Populate Charter object based on the query executed (customerID or date range)
                         if (!string.IsNullOrEmpty(customerID))
                         {
-                            charter.CustomerFirstName = reader["CUST_FNAME"] != DBNull.Value ? reader["CUST_FNAME"].ToString() : "null";
-                            charter.CustomerLastName = reader["CUST_LNAME"] != DBNull.Value ? reader["CUST_LNAME"].ToString() : "null";
-                            charter.CustomerEmail = reader["CUST_EMAIL"] != DBNull.Value ? reader["CUST_EMAIL"].ToString() : "null";
-                            charter.BoatName = reader["BOAT_NAME"] != DBNull.Value ? reader["BOAT_NAME"].ToString() : "null";
-                            charter.BoatSize = reader["BOAT_SIZE"] != DBNull.Value ? reader["BOAT_SIZE"].ToString() : "null";
-                            charter.WeatherDescription = reader["WEATHER_DESC"] != DBNull.Value ? reader["WEATHER_DESC"].ToString() : "null";
-                            charter.ItineraryName = reader["ITINERARY_NAME"] != DBNull.Value ? reader["ITINERARY_NAME"].ToString() : "null";
+                            charter.CustomerFirstName = reader.GetString(reader.GetOrdinal("CUST_FNAME"));
+                            charter.CustomerLastName = reader.GetString(reader.GetOrdinal("CUST_LNAME"));
+                            charter.CustomerEmail = reader.GetString(reader.GetOrdinal("CUST_EMAIL"));
+                            charter.BoatName = reader.GetString(reader.GetOrdinal("BOAT_NAME"));
+                            charter.BoatSize = reader.GetString(reader.GetOrdinal("BOAT_SIZE"));
+                            charter.WeatherDescription = reader.GetString(reader.GetOrdinal("WEATHER_DESC"));
+                            charter.ItineraryName = reader.GetString(reader.GetOrdinal("ITINERARY_NAME"));
                             charter.BoatRentalCost = reader["BOAT_RENTAL_COST"] != DBNull.Value ? Convert.ToDecimal(reader["BOAT_RENTAL_COST"]) : 0;
+
+                            //charter.CustomerFirstName = reader["CUST_FNAME"] != DBNull.Value ? reader["CUST_FNAME"].ToString() : "null";
+                            //charter.CustomerLastName = reader["CUST_LNAME"] != DBNull.Value ? reader["CUST_LNAME"].ToString() : "null";
+                            //charter.CustomerEmail = reader["CUST_EMAIL"] != DBNull.Value ? reader["CUST_EMAIL"].ToString() : "null";
+                            //charter.BoatName = reader["BOAT_NAME"] != DBNull.Value ? reader["BOAT_NAME"].ToString() : "null";
+                            //charter.BoatSize = reader["BOAT_SIZE"] != DBNull.Value ? reader["BOAT_SIZE"].ToString() : "null";
+                            //charter.WeatherDescription = reader["WEATHER_DESC"] != DBNull.Value ? reader["WEATHER_DESC"].ToString() : "null";
+                            //charter.ItineraryName = reader["ITINERARY_NAME"] != DBNull.Value ? reader["ITINERARY_NAME"].ToString() : "null";
+                            //charter.BoatRentalCost = reader["BOAT_RENTAL_COST"] != DBNull.Value ? Convert.ToDecimal(reader["BOAT_RENTAL_COST"]) : 0;
                         }
                         else if (startDate.HasValue && endDate.HasValue)
                         {
@@ -133,28 +139,28 @@ namespace CaribbeanSailboat.Pages.Report
     }
     public class Charter
     {
-        public string CharterID { get; set; }
-        public string BoatID { get; set; }
-        public string CustomerID { get; set; }
-        public string CrewID { get; set; }
-        public string ItineraryID { get; set; }
-        public string WeatherID { get; set; }
-        public string CharterStartDate { get; set; }
-        public string CharterEndDate { get; set; }
-        public string CharterReturnDate { get; set; }
+        public string? CharterID { get; set; }
+        public string? BoatID { get; set; }
+        public string? CustomerID { get; set; }
+        public string? CrewID { get; set; }
+        public string? ItineraryID { get; set; }
+        public string? WeatherID { get; set; }
+        public string? CharterStartDate { get; set; }
+        public string? CharterEndDate { get; set; }
+        public string? CharterReturnDate { get; set; }
 
         // New Shtuff
 
-        public string CustomerFirstName { get; set; }
-        public string CustomerLastName { get; set; }
-        public string CustomerEmail { get; set; }
-        public string BoatName { get; set; }
-        public string BoatSize { get; set; }
-        public string WeatherDescription { get; set; }
-        public string ItineraryName { get; set; }
+        public string? CustomerFirstName { get; set; }
+        public string? CustomerLastName { get; set; }
+        public string? CustomerEmail { get; set; }
+        public string? BoatName { get; set; }
+        public string? BoatSize { get; set; }
+        public string? WeatherDescription { get; set; }
+        public string? ItineraryName { get; set; }
         public decimal BoatRentalCost { get; set; }
-        public string CrewFirstName { get; set; }
-        public string CrewLastName { get; set; }
+        public string? CrewFirstName { get; set; }
+        public string? CrewLastName { get; set; }
     }
 }
 
