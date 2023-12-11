@@ -1,27 +1,128 @@
 @page "/report"
 @using CaribbeanSailboat.Components
-@using CaribbeanSailboat.Components.StandardButton
 
 <PageTitle>C.S.Charters - Report</PageTitle>
 
 <div class="content-container">
     <div class="container-fluid flex-container">
-        <div class="row flex-row-20 d-flex align-items-center justify-content-center">
-            <!-- Content for the first row (20%) -->
-            <div class="col d-flex align-items-center justify-content-center">
-                <StandardButton Text="Button" />
-                <StandardButton Text="Button" />
-                <StandardButton Text="Button" />
+        <h2>Charter Search</h2>
+        <div class="toggle-container">
+            <span>Date Range Search</span>
+            <div class="toggle-switch">
+                <input type="checkbox" id="viewToggle" @bind="isCustomerIDView" />
+                <label for="viewToggle" class="slider"></label>
             </div>
+            <span>Customer ID Report</span>
         </div>
-        <div class="row flex-row-80 mt-5">
-            <!-- Content for the second row (80%) -->
-            <div class="col">
-                @for (int i = 0; i < 15; ++i)
+
+        @if (isCustomerIDView)
+        {
+            <div class="search-container">
+                <label for="customerIDInput">Customer ID:</label>
+                <input type="text" id="customerIDInput" @bind="customerID" placeholder="Enter Customer ID" />
+                <button @onclick="LoadFilteredCharters">Search</button>
+            </div>
+
+            @if (searchPerformed && isCustomerIDView)
+            {
+                if (CustomerIDCharters != null && CustomerIDCharters.Any())
                 {
-                    <p>Add your reports here...</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Boat Name</th>
+                                <th>Boat Size</th>
+                                <th>Weather</th>
+                                <th>Itinerary</th>
+                                <th>Rental Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var charter in CustomerIDCharters)
+                            {
+                                <tr>
+                                    <td>@charter.CustomerFirstName</td>
+                                    <td>@charter.CustomerLastName</td>
+                                    <td>@charter.CustomerEmail</td>
+                                    <td>@charter.BoatName</td>
+                                    <td>@charter.BoatSize</td>
+                                    <td>@charter.WeatherDescription</td>
+                                    <td>@charter.ItineraryName</td>
+                                    <td>@charter.BoatRentalCost.ToString("C")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <!-- Conditionally render the financial report only if a valid search has been performed -->
+                    @if (!string.IsNullOrEmpty(customerID) && searchPerformed && CustomerIDCharters.Any())
+                    {
+                        <div class="financial-report-container">
+                            <h3>Financial Report</h3>
+                            <div>
+                                <p><strong>Name:</strong> @CustomerIDCharters.First().CustomerFirstName @CustomerIDCharters.First().CustomerLastName</p>
+                                <p><strong>Email:</strong> @CustomerIDCharters.First().CustomerEmail</p>
+                                <p><strong>Total Balance:</strong> @CustomerIDCharters.Sum(c => c.BoatRentalCost).ToString("C")</p>
+                            </div>
+                        </div>
+                        }
                 }
+                else
+                {
+                    <p>No charters found for the specified Customer ID.</p>
+                }
+            }
+        }
+        else
+        {
+            <div>
+                <input type="date" @bind="startDateFilter" />
+                <input type="date" @bind="endDateFilter" />
+                <button @onclick="LoadChartersByDateRange">Filter</button>
             </div>
-        </div>
+
+            @if (searchPerformed && !isCustomerIDView)
+            {
+                if (DateRangeCharters != null && DateRangeCharters.Any())
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Boat Name</th>
+                                <th>Crew</th>
+                                <th>Itinerary</th>
+                                <th>Weather</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Return Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var charter in DateRangeCharters)
+                            {
+                                <tr>
+                                    <td>@(charter.CustomerFirstName ?? "N/A") @(charter.CustomerLastName ?? "N/A")</td>
+                                    <td>@charter.BoatName</td>
+                                    <td>@(charter.CrewFirstName ?? "N/A") @(charter.CrewLastName ?? "N/A")</td>
+                                    <td>@charter.ItineraryName</td>
+                                    <td>@charter.WeatherDescription</td>
+                                    <td>@(DateTime.Parse(charter.CharterStartDate).ToString("d"))</td>
+                                    <td>@(DateTime.Parse(charter.CharterEndDate).ToString("d"))</td>
+                                    <td>@(DateTime.Parse(charter.CharterReturnDate).ToString("d"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>No charters found for the specified date range.</p>
+                }
+            }
+        }
     </div>
 </div>
